@@ -158,7 +158,7 @@ const row2 = cards.slice(3);
           </defs>
         </svg>
       </div>
-      <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px] mb-5" style="color: #2A2A2A;">Our Expertise at a Glance</h3>
+      <h3 class="font-montserrat text-[24px] font-semibold leading-[28.8px] mb-5" style="color: #2A2A2A;">Our Expertise</h3>
       <p class="font-merriweather text-[18px] font-normal leading-[30.6px] max-w-[860px] mx-auto" style="color: #2A2A2A;">Our practice areas form a complete end-to-end capability system that give our clients a comprehensive partner equipped to guide the entire lifecycle of modern digital work.</p>
     </div>
 
@@ -174,7 +174,9 @@ const row2 = cards.slice(3);
             <span class="font-montserrat text-[16px] font-bold leading-6 text-white">{card.num}</span>
           </div>
           <div class="flex flex-1 flex-col px-4 pb-4 pt-3">
-            <h4 class="mb-3 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">{card.title}</h4>
+            <h4 class="mb-3 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">
+              <a href="#expertise" class="practice-title-link" data-expertise-tab={card.tabId}>{card.title}</a>
+            </h4>
             <div class="practice-card-body-stack">
               {card.description && (
                 <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
@@ -205,7 +207,9 @@ const row2 = cards.slice(3);
             <span class="font-montserrat text-[16px] font-bold leading-6 text-white">{card.num}</span>
           </div>
           <div class="flex flex-1 flex-col px-4 pb-4 pt-3">
-            <h4 class="mb-3 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">{card.title}</h4>
+            <h4 class="mb-3 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">
+              <a href="#expertise" class="practice-title-link" data-expertise-tab={card.tabId}>{card.title}</a>
+            </h4>
             <div class="practice-card-body-stack">
               {card.description && (
                 <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
@@ -230,10 +234,10 @@ const row2 = cards.slice(3);
     <div class="practice-mobile-carousel" style="display: none; max-width: 350px; margin: 0 auto 32px;">
       <div class="practice-mobile-controls">
         <button id="practice-mobile-prev" class="practice-mobile-control practice-mobile-control-prev" type="button" aria-label="Previous practice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
         </button>
         <button id="practice-mobile-next" class="practice-mobile-control practice-mobile-control-next" type="button" aria-label="Next practice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
         </button>
       </div>
       <div style="position: relative; width: 100%; min-height: 228px;">
@@ -250,7 +254,9 @@ const row2 = cards.slice(3);
               <span class="font-montserrat text-[16px] font-bold leading-6 text-white">{card.num}</span>
             </div>
             <div class="flex flex-1 flex-col px-4 pb-4 pt-3">
-              <h4 class="mb-2 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">{card.title}</h4>
+              <h4 class="mb-2 font-montserrat text-[16px] font-semibold leading-6" style="color: #060505;">
+                <a href="#expertise" class="practice-title-link" data-expertise-tab={card.tabId}>{card.title}</a>
+              </h4>
               <div class="practice-card-body-stack">
                 {card.description && (
                   <p class="practice-card-description font-merriweather text-[14px] font-normal leading-[23.8px]" style="color: #2A2A2A;">{card.description}</p>
@@ -331,7 +337,7 @@ const row2 = cards.slice(3);
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }
 
-  document.querySelectorAll<HTMLAnchorElement>('.practice-capability-link').forEach((link) => {
+  document.querySelectorAll<HTMLAnchorElement>('.practice-capability-link, .practice-title-link').forEach((link) => {
     link.addEventListener('click', (event) => {
       const expertiseSection = document.getElementById('expertise');
       const tabId = link.dataset.expertiseTab;
@@ -515,15 +521,44 @@ const row2 = cards.slice(3);
   transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
+.practice-title-link {
+  align-items: baseline;
+  color: inherit;
+  display: inline-flex;
+  gap: 6px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.practice-title-link::after {
+  color: #8C8375;
+  content: '→';
+  font-size: 0.9em;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.practice-capability-link:hover,
+.practice-capability-link:focus-visible,
+.practice-title-link:hover,
+.practice-title-link:focus-visible {
+  color: #683547;
+}
+
 .practice-capability-link:hover,
 .practice-capability-link:focus-visible {
-  color: #683547;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
 
-.practice-capability-link:focus-visible {
+.practice-title-link:hover::after,
+.practice-title-link:focus-visible::after {
+  color: #683547;
+}
+
+.practice-capability-link:focus-visible,
+.practice-title-link:focus-visible {
   outline: 2px solid rgba(104, 53, 71, 0.35);
   outline-offset: 2px;
   border-radius: 3px;
@@ -667,38 +702,44 @@ const row2 = cards.slice(3);
   #practices .practice-mobile-control {
     align-items: center;
     appearance: none;
-    border: 0;
+    background: rgba(255, 255, 255, 0.44);
+    border: 1px solid rgba(145, 131, 108, 0.22);
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: none;
+    color: rgba(117, 106, 87, 0.58);
     cursor: pointer;
     display: inline-flex;
-    flex: 0 0 42px;
-    height: 42px;
+    flex: 0 0 28px;
+    height: 28px;
     justify-content: center;
     line-height: 0;
     margin: 0;
-    max-height: 42px;
-    max-width: 42px;
-    min-height: 42px;
-    min-width: 42px;
+    max-height: 28px;
+    max-width: 28px;
+    min-height: 28px;
+    min-width: 28px;
     padding: 0;
     pointer-events: auto;
     position: absolute;
     top: 246px;
     transform: translateY(-50%);
+    transition: color 0.2s ease;
     vertical-align: middle;
-    width: 42px;
+    width: 28px;
     -webkit-tap-highlight-color: transparent;
   }
 
   #practices .practice-mobile-control-prev {
-    background: #C4BCAD;
-    left: -21px;
+    left: -14px;
   }
 
   #practices .practice-mobile-control-next {
-    background: #968C80;
-    right: -21px;
+    right: -14px;
+  }
+
+  #practices .practice-mobile-control:hover,
+  #practices .practice-mobile-control:focus-visible {
+    color: rgba(117, 106, 87, 0.82);
   }
 
   #practices .practice-mobile-control:active {
@@ -706,16 +747,16 @@ const row2 = cards.slice(3);
   }
 
   #practices .practice-mobile-control:focus-visible {
-    outline: 2px solid rgba(117, 106, 87, 0.55);
-    outline-offset: 3px;
+    outline: 1px solid rgba(117, 106, 87, 0.18);
+    outline-offset: 2px;
   }
 
   #practices .practice-mobile-control svg {
     display: block;
-    flex: 0 0 15px;
-    height: 15px;
+    flex: 0 0 13px;
+    height: 13px;
     pointer-events: none;
-    width: 15px;
+    width: 13px;
   }
 
   #practices h2 {

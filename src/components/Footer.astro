@@ -135,7 +135,7 @@ const socialIcons = [
           <p class="font-merriweather text-[14px] mb-8" style="color: rgba(244,243,242,0.88);">Signal Hill, California</p>
 
           <p class="font-montserrat text-[16px] font-bold uppercase tracking-wider mb-3" style="color: #91836C; font-variant: small-caps;">Connect</p>
-          <a href="mailto:hello@Dnadigital.com" class="flex items-center gap-2 mb-4 hover:text-dna-gold-light transition-colors" style="color: rgba(244,243,242,0.88);">
+          <a href="mailto:hello@Dnadigital.com" class="footer-contact-link flex items-center gap-2 mb-4" style="color: rgba(244,243,242,0.88);">
             <svg xmlns="http://www.w3.org/2000/svg" width="18.824" height="16" viewBox="0 0 21 18" fill="none" style="flex-shrink: 0;">
               <path d="M5.74993 5.48438L8.51889 7.12146C10.1332 8.07591 10.7784 8.07591 12.3928 7.12146L15.1617 5.48438M0.764842 10.1388C0.826367 13.0241 0.857134 14.4666 1.92173 15.5353C2.98631 16.6039 4.46796 16.6411 7.43125 16.7156C9.25758 16.7615 11.066 16.7615 12.8923 16.7156C15.8556 16.6411 17.3372 16.6039 18.4019 15.5353C19.4664 14.4666 19.4972 13.0241 19.5587 10.1388C19.5785 9.21108 19.5785 8.28892 19.5587 7.3612C19.4972 4.47599 19.4664 3.03338 18.4019 1.96474C17.3372 0.8961 15.8556 0.858876 12.8923 0.78442C11.066 0.738528 9.25758 0.738528 7.43124 0.784411C4.46796 0.858858 2.98631 0.896081 1.92172 1.96473C0.857125 3.03337 0.826367 4.47598 0.764833 7.3612C0.745049 8.28892 0.745059 9.21108 0.764842 10.1388Z" stroke="#91836C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -163,11 +163,11 @@ const socialIcons = [
         &copy; 2026 Dna Digital Consultancy. All rights reserved.
       </p>
       <div class="flex items-center gap-2 md:gap-3">
-        <a href="/privacy-policy" class="font-montserrat text-[12px] font-normal leading-[19.6px] hover:text-white transition-colors" style="color: rgba(244,243,242,0.7);">Privacy Policy</a>
+        <a href="/privacy-policy" class="footer-legal-link font-montserrat text-[12px] font-normal leading-[19.6px]" style="color: rgba(244,243,242,0.7);">Privacy Policy</a>
         <span style="color: rgba(244,243,242,0.4);">|</span>
-        <a href="/terms-and-conditions" class="font-montserrat text-[12px] font-normal leading-[19.6px] hover:text-white transition-colors" style="color: rgba(244,243,242,0.7);">Terms &amp; Conditions</a>
+        <a href="/terms-and-conditions" class="footer-legal-link font-montserrat text-[12px] font-normal leading-[19.6px]" style="color: rgba(244,243,242,0.7);">Terms &amp; Conditions</a>
         <span style="color: rgba(244,243,242,0.4);">|</span>
-        <a href="/cookie-preferences" class="font-montserrat text-[12px] font-normal leading-[19.6px] hover:text-white transition-colors" style="color: rgba(244,243,242,0.7);">Cookie Preferences</a>
+        <a href="/cookie-preferences" class="footer-legal-link font-montserrat text-[12px] font-normal leading-[19.6px]" style="color: rgba(244,243,242,0.7);">Cookie Preferences</a>
       </div>
     </div>
   </div>
@@ -195,5 +195,55 @@ const socialIcons = [
   outline: 2px solid rgba(224, 201, 163, 0.42);
   outline-offset: 3px;
   border-radius: 3px;
+}
+
+.footer-contact-link:hover,
+.footer-contact-link:focus-visible {
+  color: #E0C9A3 !important;
+}
+
+.footer-legal-link:hover,
+.footer-legal-link:focus-visible {
+  color: #ffffff !important;
+}
+
+.footer-contact-link:focus-visible,
+.footer-legal-link:focus-visible {
+  outline: 2px solid rgba(224, 201, 163, 0.42);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.footer-social-icon {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 99px;
+  background: rgba(244, 243, 242, 0.04);
+  opacity: 0.82;
+  transform: translateY(0);
+}
+
+.footer-social-icon img {
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-social-icon:hover,
+.footer-social-icon:focus-visible {
+  border: 0;
+  background: rgba(224, 201, 163, 0.12);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.footer-social-icon:hover img,
+.footer-social-icon:focus-visible img {
+  filter: brightness(1.18) saturate(1.08);
+}
+
+.footer-social-icon:focus-visible {
+  outline: 2px solid rgba(224, 201, 163, 0.42);
+  outline-offset: 3px;
 }
 </style>

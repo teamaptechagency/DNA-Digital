@@ -262,6 +262,15 @@ class="fixed top-0 left-0 right-0 z-[200] h-[72px] md:h-[112px] flex items-cente
       <h3 class="conversation-title">Thank you for taking the next step</h3>
     </div>
 
+    <button
+      id="conversation-close-inline"
+      type="button"
+      class="conversation-close-inline-btn"
+      aria-label="Close conversation form"
+    >
+      Close
+    </button>
+
     <!-- LeadConnector Embedded Form -->
     <div class="conversation-form conversation-leadconnector-form">
       <iframe
@@ -295,6 +304,7 @@ const navLinks = document.querySelectorAll<HTMLElement>('#main-nav [data-nav-lin
 
 const panel = document.getElementById('conversation-panel') as HTMLElement;
 const panelClose = document.getElementById('conversation-close') as HTMLButtonElement;
+const panelCloseInline = document.getElementById('conversation-close-inline') as HTMLButtonElement;
 
 const aiPanel = document.getElementById('ai-concierge-panel') as HTMLElement;
 const aiClose = document.getElementById('ai-concierge-close') as HTMLButtonElement;
@@ -628,6 +638,7 @@ document.addEventListener('click', (event) => {
 });
 
 panelClose?.addEventListener('click', closeConversationPanel);
+panelCloseInline?.addEventListener('click', closeConversationPanel);
 aiClose?.addEventListener('click', closeAiConciergePanel);
 
 document.addEventListener('click', (event) => {
@@ -979,8 +990,53 @@ body.mobile-menu-open {
   color: #f5e9d4;
 }
 
+.conversation-close-inline-btn {
+  display: none;
+  align-self: flex-start;
+  min-height: 42px;
+  padding: 12px 26px;
+  border: 0;
+  border-radius: 6px;
+  background: #683547;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Montserrat, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  transform: translateY(0);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.conversation-close-inline-btn:hover,
+.conversation-close-inline-btn:focus-visible {
+  background: #7a4054;
+  color: #ffffff;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+  transform: translateY(-3px);
+  outline: none;
+}
+
 .conversation-panel-submitted .conversation-title-wrap {
   display: none;
+}
+
+.conversation-panel-submitted .conversation-close-inline-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 425px;
+  z-index: 30;
+  transform: translateX(-50%);
+}
+
+.conversation-panel-submitted .conversation-close-inline-btn:hover,
+.conversation-panel-submitted .conversation-close-inline-btn:focus-visible {
+  transform: translateX(-50%) translateY(-3px);
 }
 
 .conversation-leadconnector-form {
@@ -1013,6 +1069,10 @@ body.mobile-menu-open {
   .conversation-leadconnector-form,
   .conversation-leadconnector-form iframe {
     min-height: 560px;
+  }
+
+  .conversation-panel-submitted .conversation-close-inline-btn {
+    top: 390px;
   }
 }
 
@@ -1060,6 +1120,10 @@ body.mobile-menu-open {
   .conversation-leadconnector-form,
   .conversation-leadconnector-form iframe {
     min-height: 620px;
+  }
+
+  .conversation-panel-submitted .conversation-close-inline-btn {
+    top: 375px;
   }
 }
 </style>

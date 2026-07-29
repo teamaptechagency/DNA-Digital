@@ -214,30 +214,20 @@ import '../styles/global.css';
                 class="cookie-action-bar flex items-center justify-between px-8"
                 style="border-top: 1px solid #E2DED6; padding-top: 24px; padding-bottom: 24px;"
               >
-                <!-- Decline All -->
-                <button
-                  id="decline-btn"
-                  class="font-montserrat font-semibold cursor-pointer transition-opacity hover:opacity-80"
-                  style="font-size: 14px; line-height: 17.07px; color: rgba(42,42,42,0.6); background: none; border: none; padding: 16px 0; border-radius: 6px;"
-                >
-                  DECLINE ALL NON-ESSENTIAL
-                </button>
-
-                <!-- Accept All + Save -->
-                <div class="flex items-center gap-4">
+                <div class="cookie-action-buttons flex items-center gap-4">
                   <button
                     id="accept-btn"
-                    class="font-montserrat font-semibold cursor-pointer transition-all hover:bg-[#91836C] hover:text-white"
-                    style="font-size: 14px; line-height: 17.07px; color: #91836C; background: transparent; border: 1.5px solid #91836C; padding: 14px 24px; border-radius: 6px;"
+                    class="font-montserrat font-semibold cursor-pointer transition-opacity hover:opacity-90"
+                    style="font-size: 14px; line-height: 17.07px; color: #fff; background: #91836C; border: 1.5px solid #91836C; padding: 14px 24px; border-radius: 6px;"
                   >
                     ACCEPT ALL COOKIES
                   </button>
                   <button
-                    id="save-btn"
-                    class="font-montserrat font-semibold cursor-pointer transition-opacity hover:opacity-90"
-                    style="font-size: 14px; line-height: 17.07px; color: #fff; background: #91836C; border: none; padding: 16px 24px; border-radius: 6px;"
+                    id="decline-btn"
+                    class="font-montserrat font-semibold cursor-pointer transition-all hover:bg-[#91836C] hover:text-white"
+                    style="font-size: 14px; line-height: 17.07px; color: #91836C; background: transparent; border: 1.5px solid #91836C; padding: 14px 24px; border-radius: 6px;"
                   >
-                    SAVE MY PREFERENCES
+                    DECLINE ALL NON-ESSENTIAL COOKIES
                   </button>
                 </div>
               </div>
@@ -415,6 +405,10 @@ import '../styles/global.css';
     cursor: pointer;
   }
 
+  .legal-cookie-page .cookie-action-bar {
+    justify-content: flex-end;
+  }
+
   @media (max-width: 768px) {
     .legal-cookie-page .legal-hero {
       height: 400px !important;
@@ -488,15 +482,21 @@ import '../styles/global.css';
       justify-content: flex-start;
     }
 
-    .legal-cookie-page .cookie-action-bar > div {
+    .legal-cookie-page .cookie-action-buttons {
       display: flex;
       flex-direction: column;
       gap: 16px;
       width: 100%;
-      order: 2;
     }
 
-    .legal-cookie-page #save-btn {
+    .legal-cookie-page .cookie-rights-link {
+      display: inline;
+      min-height: 32px;
+      text-align: left;
+      touch-action: manipulation;
+    }
+
+    .legal-cookie-page #accept-btn {
       order: 1;
       width: 100%;
       padding: 16px 24px !important;
@@ -505,20 +505,12 @@ import '../styles/global.css';
       border-radius: 6px !important;
     }
 
-    .legal-cookie-page #accept-btn {
+    .legal-cookie-page #decline-btn {
       order: 2;
       width: 100%;
       padding: 16px 24px !important;
-      font-size: 14px !important;
-      line-height: normal !important;
-      border-radius: 6px !important;
-    }
-
-    .legal-cookie-page #decline-btn {
-      order: 3;
-      width: 100%;
-      padding: 16px 0 !important;
       text-align: center;
+      border: 1.5px solid #91836C !important;
     }
 
     .legal-cookie-page .cookie-content [style*='min-width: 180px'] {
@@ -577,16 +569,6 @@ import '../styles/global.css';
     return getConsentApi()?.save(!!analytics?.checked, !!marketing?.checked, source);
   }
 
-  function showFeedback(btn: HTMLButtonElement, msg: string) {
-    const original = btn.textContent;
-    btn.textContent = msg;
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = original;
-      btn.disabled = false;
-    }, 1800);
-  }
-
   // Decline All
   document.getElementById('decline-btn')?.addEventListener('click', () => {
     const { analytics, marketing } = getToggles();
@@ -603,16 +585,28 @@ import '../styles/global.css';
     saveCurrent('accept-all');
   });
 
-  // Save Preferences
-  document.getElementById('save-btn')?.addEventListener('click', (e) => {
-    saveCurrent('preferences-page');
-    showFeedback(e.currentTarget as HTMLButtonElement, 'PREFERENCES SAVED');
-  });
-
-  document.getElementById('ccpa-opt-out')?.addEventListener('click', () => {
+  function optOutMarketingCookies() {
     const { analytics, marketing } = getToggles();
     if (marketing) marketing.checked = false;
-    getConsentApi()?.save(!!analytics?.checked, false, 'ccpa-opt-out');
+    renderConsent(getConsentApi()?.save(!!analytics?.checked, false, 'ccpa-opt-out'));
+  }
+
+  const ccpaOptOut = document.getElementById('ccpa-opt-out');
+  let ccpaPointerHandled = false;
+
+  ccpaOptOut?.addEventListener('pointerup', (event) => {
+    event.preventDefault();
+    ccpaPointerHandled = true;
+    optOutMarketingCookies();
+  });
+
+  ccpaOptOut?.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (ccpaPointerHandled) {
+      ccpaPointerHandled = false;
+      return;
+    }
+    optOutMarketingCookies();
   });
 
   window.addEventListener('dna:consent-changed', (event) => {

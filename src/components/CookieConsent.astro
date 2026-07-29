@@ -8,36 +8,9 @@
     </div>
 
     <div class="cookie-consent-controls">
-      <div class="cookie-quick-options">
-        <div class="cookie-quick-row">
-          <span><strong>Essential</strong><small>Required</small></span>
-          <span class="cookie-lock" aria-label="Always active">
-            <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
-              <rect x="1" y="7" width="12" height="8" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M4 7V4a3 3 0 0 1 6 0v3" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </span>
-        </div>
-        <label class="cookie-quick-row" for="banner-analytics-toggle">
-          <span><strong>Analytics</strong><small>Off by default</small></span>
-          <span class="cookie-mini-switch">
-            <input id="banner-analytics-toggle" type="checkbox" aria-label="Allow analytics cookies" />
-            <span></span>
-          </span>
-        </label>
-        <label class="cookie-quick-row" for="banner-marketing-toggle">
-          <span><strong>Marketing</strong><small>Off by default</small></span>
-          <span class="cookie-mini-switch">
-            <input id="banner-marketing-toggle" type="checkbox" aria-label="Allow marketing cookies" />
-            <span></span>
-          </span>
-        </label>
-      </div>
-
       <div class="cookie-consent-actions">
-        <button id="banner-decline-cookies" type="button" class="cookie-btn cookie-btn-link">DECLINE NON-ESSENTIAL</button>
-        <button id="banner-save-cookies" type="button" class="cookie-btn cookie-btn-outline">SAVE SELECTION</button>
-        <button id="banner-accept-cookies" type="button" class="cookie-btn cookie-btn-solid">ACCEPT ALL</button>
+        <button id="banner-accept-cookies" type="button" class="cookie-btn cookie-btn-solid">ACCEPT ALL COOKIES</button>
+        <button id="banner-decline-cookies" type="button" class="cookie-btn cookie-btn-outline">DECLINE ALL NON-ESSENTIAL COOKIES</button>
       </div>
     </div>
   </div>
@@ -49,7 +22,7 @@
     left: 20px;
     right: 20px;
     bottom: 20px;
-    z-index: 10000;
+    z-index: 2147483000;
     opacity: 0;
     visibility: hidden;
     transform: translateY(calc(100% + 32px));
@@ -153,7 +126,6 @@
     letter-spacing: .02em;
     cursor: pointer;
   }
-  .cookie-btn-link { margin-right: auto; border: 0; background: transparent; color: rgba(245,233,212,.68); }
   .cookie-btn-outline { border: 1px solid #91836c; background: transparent; color: #f5e9d4; }
   .cookie-btn-solid { border: 1px solid #91836c; background: #91836c; color: #fff; }
   @media (max-width: 900px) {
@@ -163,9 +135,8 @@
   @media (max-width: 600px) {
     .cookie-consent-shell { max-height: calc(100vh - 20px); overflow-y: auto; }
     .cookie-quick-options { grid-template-columns: 1fr; }
-    .cookie-consent-actions { display: grid; grid-template-columns: 1fr 1fr; }
+    .cookie-consent-actions { display: grid; grid-template-columns: 1fr; }
     .cookie-btn { width: 100%; }
-    .cookie-btn-link { grid-column: 1 / -1; grid-row: 2; }
   }
 </style>
 
@@ -217,12 +188,7 @@
   window.dispatchEvent(new CustomEvent('dna:consent-ready'));
 
   const banner = document.getElementById('cookie-consent-banner');
-  const analyticsToggle = document.getElementById('banner-analytics-toggle') as HTMLInputElement | null;
-  const marketingToggle = document.getElementById('banner-marketing-toggle') as HTMLInputElement | null;
   const saved = readConsent();
-
-  if (analyticsToggle) analyticsToggle.checked = saved?.analytics ?? false;
-  if (marketingToggle) marketingToggle.checked = saved?.marketing ?? false;
 
   if (!saved) {
     requestAnimationFrame(() => {
@@ -237,9 +203,6 @@
     banner?.setAttribute('aria-hidden', 'true');
   }
 
-  document.getElementById('banner-save-cookies')?.addEventListener('click', () => {
-    finishBanner(!!analyticsToggle?.checked, !!marketingToggle?.checked, 'quick-selection');
-  });
   document.getElementById('banner-accept-cookies')?.addEventListener('click', () => {
     finishBanner(true, true, 'accept-all');
   });
