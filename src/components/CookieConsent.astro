@@ -209,4 +209,12 @@
   document.getElementById('banner-decline-cookies')?.addEventListener('click', () => {
     finishBanner(false, false, 'decline-all');
   });
+
+  const preferencesLink = banner?.querySelector<HTMLAnchorElement>('a[href="/cookie-preferences"]');
+  preferencesLink?.addEventListener('click', (event) => {
+    if (window.location.pathname.replace(/\/$/, '') !== '/cookie-preferences') return;
+    event.preventDefault();
+    banner?.classList.remove('is-visible');
+    banner?.setAttribute('aria-hidden', 'true');
+  });
 </script>

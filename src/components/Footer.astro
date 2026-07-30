@@ -93,6 +93,7 @@ const socialIcons = [
       <div>
         <a
           href="/"
+          id="footer-home-link"
           class="footer-nav-heading-link font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-4 inline-block transition-colors duration-300"
           style="color: #F5F1EA; font-variant: small-caps;"
         >
@@ -190,6 +191,13 @@ const socialIcons = [
     link.addEventListener('click', (event) => {
       event.preventDefault();
     });
+  });
+
+  const footerHomeLink = document.getElementById('footer-home-link');
+  footerHomeLink?.addEventListener('click', (event) => {
+    if (window.location.pathname !== '/') return;
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 </script>
 
