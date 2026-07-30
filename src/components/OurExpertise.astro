@@ -623,18 +623,25 @@ showTab(3);
   line-height: 1.45;
   color: #564A3D;
   font-weight: 400;
-  transition: color 0.2s ease;
+  text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
 }
 
-.expertise-capability-btn:hover .expertise-capability-dot,
-.expertise-capability-btn:focus-visible .expertise-capability-dot,
 .expertise-capability-btn.is-active .expertise-capability-dot {
   background-color: #8C7860;
 }
 
+.expertise-capability-btn:hover .expertise-capability-dot,
+.expertise-capability-btn:focus-visible .expertise-capability-dot {
+  background-color: #683547;
+}
+
 .expertise-capability-btn:hover .expertise-capability-label,
 .expertise-capability-btn:focus-visible .expertise-capability-label {
-  color: #2A2118;
+  color: #683547;
+  text-decoration: underline;
 }
 
 .expertise-capability-btn.is-active .expertise-capability-label {
@@ -792,9 +799,10 @@ showTab(3);
     opacity: 0.88;
   }
 
-  #expertise .expertise-capability-btn.is-active .expertise-capability-label,
-  #expertise .expertise-capability-btn:hover .expertise-capability-label {
-    color: #2A2118 !important;
+  #expertise .expertise-capability-btn:hover .expertise-capability-label,
+  #expertise .expertise-capability-btn:focus-visible .expertise-capability-label {
+    color: #683547 !important;
+    text-decoration: underline !important;
   }
 
   #expertise .expertise-capability-btn.is-active .expertise-capability-label {
