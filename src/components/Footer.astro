@@ -91,7 +91,13 @@ const socialIcons = [
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 mb-16 border-t pt-12" style="border-color: rgba(224,201,163,0.2);">
       <!-- Home -->
       <div>
-        <h4 class="font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-4" style="color: #F5F1EA; font-variant: small-caps;">Home</h4>
+        <a
+          href="/"
+          class="footer-nav-heading-link font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-4 inline-block transition-colors duration-300"
+          style="color: #F5F1EA; font-variant: small-caps;"
+        >
+          Home
+        </a>
       </div>
 
       <!-- Practices -->
@@ -127,7 +133,13 @@ const socialIcons = [
 
       <!-- About -->
       <div class="flex flex-col h-full">
-        <h4 class="font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-3 md:mb-6" style="color: #F5F1EA; font-variant: small-caps;">About</h4>
+        <a
+          href="/about"
+          class="footer-nav-heading-link font-montserrat text-[16px] md:text-[13px] font-bold tracking-wider uppercase mb-3 md:mb-6 inline-block transition-colors duration-300"
+          style="color: #F5F1EA; font-variant: small-caps;"
+        >
+          About
+        </a>
 
         <!-- Headquarters + Connect in one box -->
         <div class="border p-5 mt-auto" style="border-color: rgba(145,131,108,0.85); border-radius: 8px; background: rgba(93,87,73,0.22);">
@@ -192,6 +204,17 @@ const socialIcons = [
 }
 
 .footer-placeholder-link:focus-visible {
+  outline: 2px solid rgba(224, 201, 163, 0.42);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.footer-nav-heading-link:hover,
+.footer-nav-heading-link:focus-visible {
+  color: #E0C9A3 !important;
+}
+
+.footer-nav-heading-link:focus-visible {
   outline: 2px solid rgba(224, 201, 163, 0.42);
   outline-offset: 3px;
   border-radius: 3px;

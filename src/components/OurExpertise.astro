@@ -886,39 +886,47 @@ showTab(3);
   #expertise #expertise-prev,
   #expertise #expertise-next {
     align-items: center !important;
-    background: #C4BCAD !important;
-    border: 0 !important;
+    background: rgba(255, 255, 255, 0.44) !important;
+    border: 1px solid rgba(145, 131, 108, 0.22) !important;
     border-radius: 50% !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: none !important;
+    color: rgba(117, 106, 87, 0.58) !important;
     display: flex !important;
-    height: 42px !important;
+    height: 28px !important;
     justify-content: center !important;
-    max-height: 42px !important;
-    max-width: 42px !important;
-    min-height: 42px !important;
-    min-width: 42px !important;
+    max-height: 28px !important;
+    max-width: 28px !important;
+    min-height: 28px !important;
+    min-width: 28px !important;
     padding: 0 !important;
     position: absolute !important;
     top: 311px !important;
     transform: translateY(-50%) !important;
-    width: 42px !important;
+    transition: color 0.2s ease !important;
+    width: 28px !important;
     z-index: 12 !important;
   }
 
   #expertise #expertise-prev {
-    left: -21px !important;
+    left: -14px !important;
   }
 
   #expertise #expertise-next {
-    right: -21px !important;
-    background: #968C80 !important;
+    right: -14px !important;
+  }
+
+  #expertise #expertise-prev:hover,
+  #expertise #expertise-prev:focus-visible,
+  #expertise #expertise-next:hover,
+  #expertise #expertise-next:focus-visible {
+    color: rgba(117, 106, 87, 0.82) !important;
   }
 
   #expertise #expertise-prev svg,
   #expertise #expertise-next svg {
-    height: 15px !important;
-    stroke: #FFFFFF !important;
-    width: 15px !important;
+    height: 13px !important;
+    stroke: currentColor !important;
+    width: 13px !important;
   }
 
   #expertise .flex.flex-col.items-center.gap-5 > p {
