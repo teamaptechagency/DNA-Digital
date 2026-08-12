@@ -20,22 +20,27 @@ const productLinks = [
 const socialIcons = [
   {
     label: 'Facebook',
-    href: '#',
+    href: 'https://www.facebook.com/dnadigitalconsultancy/',
     iconSrc: '/images/icons/fb.png',
   },
   {
     label: 'LinkedIn',
-    href: '#',
+    href: 'https://www.linkedin.com/company/dna-digital-consultancy/',
     iconSrc: '/images/icons/in.png',
   },
   {
-    label: 'YouTube',
-    href: '#',
-    iconSrc: '/images/icons/yt.png',
+    label: 'Instagram',
+    href: 'https://www.instagram.com/dnadigitalconsultancy',
+    iconSrc: '/images/icons/instagram.svg',
+  },
+  {
+    label: 'Pinterest',
+    href: 'https://www.pinterest.com/dnadigitalconsultancy/',
+    iconSrc: '/images/icons/pinterest.svg',
   },
   {
     label: 'X (Twitter)',
-    href: '#',
+    href: 'https://x.com/dna_digitalbiz/',
     iconSrc: '/images/icons/x.png',
   },
 ];
@@ -160,6 +165,8 @@ const socialIcons = [
               <a
                 href={social.href}
                 aria-label={social.label}
+                target="_blank"
+                rel="noopener noreferrer"
                 class="footer-social-icon flex items-center justify-center transition-all duration-300"
               >
                 <img src={social.iconSrc} alt="" class="w-[36px] h-[36px] object-contain" loading="lazy" decoding="async" aria-hidden="true" />
